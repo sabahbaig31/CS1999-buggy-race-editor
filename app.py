@@ -29,12 +29,15 @@ def create_buggy():
         msg=""
         qty_wheels = request.form['qty_wheels']
         flag_color = request.form['flag_color']
+        flag_pattern = request.form['flag_pattern']
+        flag_color_secondary = request.form['flag_color_secondary']
+
         try:
             with sql.connect(DATABASE_FILE) as con:
                 cur = con.cursor()
                 cur.execute(
-                    "UPDATE buggies set qty_wheels=?, flag_color=? WHERE id=?",
-                    (qty_wheels, flag_color, DEFAULT_BUGGY_ID)
+                    "UPDATE buggies set qty_wheels=?, flag_color=?, flag_pattern=?, flag_color_secondary=? WHERE id=?",
+                    (qty_wheels, flag_color, flag_pattern, flag_color_secondary, DEFAULT_BUGGY_ID)
                 )
                 con.commit()
                 msg = "Record successfully saved"
