@@ -39,6 +39,13 @@ def create_buggy():
         tyres = request.form['tyres']
         qty_tyres = request.form['qty_tyres']
         armour = request.form['armour']
+        attack = request.form['attack']
+        qty_attacks = request.form['qty_attacks']
+        fireproof = request.form['fireproof']
+        insulated = request.form['insulated']
+        antibiotic = request.form['antibiotic']
+        banging = request.form['banging']
+        algo = request.form['algo']
 
         try:
             with sql.connect(DATABASE_FILE) as con:
@@ -47,10 +54,15 @@ def create_buggy():
                     """
                     UPDATE buggies set qty_wheels=?, flag_color=?, flag_pattern=?, flag_color_secondary=?,
                     power_type=?, power_units=?, aux_power_type=?, aux_power_units=?, hamster_booster=?,
-                    tyres=?, qty_tyres=?, armour=? WHERE id=?""",
+                    tyres=?, qty_tyres=?, armour=?, attack=?, qty_attacks=?, fireproof=?, insulated=?,
+                    antibiotic=?, banging=?, algo=? WHERE id=?
+
+                    """,
+
                     (qty_wheels, flag_color, flag_pattern, flag_color_secondary,
                     power_type, power_units, aux_power_type, aux_power_units, hamster_booster,
-                    tyres, qty_tyres, armour, DEFAULT_BUGGY_ID)
+                    tyres, qty_tyres, armour, attack, qty_attacks, fireproof, insulated,
+                    antibiotic, banging, algo, DEFAULT_BUGGY_ID)
                 )
                 con.commit()
                 msg = "Record successfully saved"
