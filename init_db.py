@@ -33,7 +33,8 @@ connection.execute("""
     power_units           INTEGER DEFAULT 1,
     aux_power_type        VARCHAR(20),
     aux_power_units       INTEGER DEFAULT 0,
-    hamster_booster       INTEGER DEFAULT 0
+    hamster_booster       INTEGER DEFAULT 0,
+    tyres                 VARCHAR (20) DEFAULT knobbly
   )
 
 """)
