@@ -30,7 +30,8 @@ connection.execute("""
     flag_color_secondary  VARCHAR(20) DEFAULT black,
     flag_pattern          VARCHAR(20) DEFAULT plain,
     power_type            VARCHAR(20) DEFAULT petrol,
-    power_units           INTEGER DEFAULT 1
+    power_units           INTEGER DEFAULT 1,
+    aux_power_type        VARCHAR(20)
   )
 
 """)
