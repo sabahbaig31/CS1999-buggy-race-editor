@@ -5,44 +5,140 @@
   <h1>Make buggy</h1>
 
   <form action="/new" method="post">
+
     <label for="qty_wheels">Number of wheels:</label>
-    <input type="text" name="qty_wheels" />
+    <input type="number" name="qty_wheels" min="4" value="4" step="2" />
+
     <label for="flag_color">Colour of flag:</label>
-    <input type="text" name="flag_color" />
+    <input type="color" name="flag_color" value="#FFFFFF"/>
+
     <label for="flag_pattern">Pattern on flag:</label>
-    <input type="text" name="flag_pattern" />
+    <select id="flag_pattern" name="flag_pattern">
+    	<option value="plain" selected>Plain</option>
+    	<option value="vstripe">Vertical stripes</option>
+    	<option value="hstripe">Horizontal stripes</option>
+    	<option value="dstripe">Diagonal stripes</option>
+    	<option value="checker">Checkered</option>
+    	<option value="spot">Spots</option>
+    </select>
+
     <label for="flag_color_secondary">Secondary colour on flag:</label>
-    <input type="text" name="flag_color_secondary" />
+    <input type="color" name="flag_color_secondary" value="#000000" />
+
     <label for="power_type">Primary motive power:</label>
-    <input type="text" name="power_type" />
+    <select id="power_type" name="power_type">
+    	<option value="petrol" selected>Petroleum-fuelled internal combustion engine</option>
+    	<option value="fusion">Fusion reactor</option>
+    	<option value="steam">Steam engine</option>
+    	<option value="bio">Bio-fuelled internal combustion engine</option>
+    	<option value="electric">Lithium-ion battery</option>
+    	<option value="rocket">Rocket fuel</option>
+    	<option value="hamster">Hamster</option>
+    	<option value="thermo">Thermonuclear reactor</option>
+    	<option value="solar">Bank of solar panels</option>
+    	<option value="wind">Sailing rig</option>
+    </select>
+
+
     <label for="power_units">Primary motive power units:</label>
-    <input type="text" name="power_units" />
+    <input type="number" name="power_units" min="1" value="1" />
+
     <label for="aux_power_type">Auxiliary motive power:</label>
-    <input type="text" name="aux_power_type" />
+    <select id="aux_power_type" name="aux_power_type">
+    	<option value="petrol">Petroleum-fuelled internal combustion engine</option>
+    	<option value="fusion">Fusion reactor</option>
+    	<option value="steam">Steam engine</option>
+    	<option value="bio">Bio-fuelled internal combustion engine</option>
+    	<option value="electric">Lithium-ion battery</option>
+    	<option value="rocket">Rocket fuel</option>
+    	<option value="hamster">Hamster</option>
+    	<option value="thermo">Thermonuclear reactor</option>
+    	<option value="solar">Bank of solar panels</option>
+    	<option value="wind">Sailing rig</option>
+    </select>
+
+    
+
     <label for="aux_power_units">Auxiliary motive power units:</label>
-    <input type="text" name="aux_power_units" />
+    <input type="number" name="aux_power_units" min="0" value="0" />
+
     <label for="hamster_booster">Hamster booster:</label>
-    <input type="text" name="hamster_booster" />
+    <input type="number" name="hamster_booster" value="0" />
+
     <label for="tyres">Type of tyres:</label>
-    <input type="text" name="tyres" />
+    <select id="tyres" name="tyres">
+    	<option value="knobbly" selected>Knobbly</option>
+    	<option value="slick">Slick</option>
+    	<option value="steelband">Steelband</option>
+    	<option value="reactive">Reactive</option>
+    	<option value="maglev">Maglev</option>
+    </select>
+
+    
+
     <label for="qty_tyres">Number of tyres:</label>
-    <input type="text" name="qty_tyres" />
+    <input type="number" name="qty_tyres" value="4" min="4" />
+
     <label for="armour">Armour:</label>
-    <input type="text" name="armour" />
+    <select id="armour" name="armour">
+    	<option value="none" selected>None</option>
+    	<option value="wood">Wood</option>
+    	<option value="aluminium">Aluminium</option>
+    	<option value="thinsteel">Thin steel</option>
+    	<option value="thicksteel">Thick steel</option>
+    	<option value="titanium">Titanium</option>
+    </select>
+
+    
+
     <label for="attack">Offensive capability:</label>
-    <input type="text" name="attack" />
+    <select id="attack" name="attack">
+    	<option value="none" selected>None</option>
+    	<option value="spike">Spike</option>
+    	<option value="flame">Flame</option>
+    	<option value="charge">Charge</option>
+    	<option value="biohazard">Biohazard</option>
+    </select>
+
+
     <label for="qty_attacks">Number of attacks:</label>
-    <input type="text" name="qty_attacks" />
+    <input type="number" name="qty_attacks" value="0" min="0" />
+
     <label for="fireproof">Fireproof?</label>
-    <input type="text" name="fireproof" />
+    <input type="radio" id="true" name="fireproof" value="true">
+    <label for="true">Yes</label>
+    <input type="radio" id="false" name="fireproof" value="false" checked>
+    <label for="false">No</label>
+
     <label for="insulated">Insulated?</label>
-    <input type="text" name="insulated" />
+    <input type="radio" id="true" name="insulated" value="true">
+    <label for="true">Yes</label>
+    <input type="radio" id="false" name="insulated" value="false" checked>
+    <label for="false">No</label>
+    
+
     <label for="antibiotic">Antibiotic?</label>
-    <input type="text" name="antibiotic" />
+    <input type="radio" id="true" name="antibiotic" value="true">
+    <label for="true">Yes</label>
+    <input type="radio" id="false" name="antibiotic" value="false" checked>
+    <label for="false">No</label>
+
     <label for="banging">Banging sound system?</label>
-    <input type="text" name="banging" />
+    <input type="radio" id="true" name="banging" value="true">
+    <label for="true">Yes</label>
+    <input type="radio" id="false" name="banging" value="false" checked>
+    <label for="false">No</label>
+
     <label for="algo">Race computer algorithm:</label>
-    <input type="text" name="algo" />
+    <select id="algo" name="algo">
+    	<option value="defensive">Defensive</option>
+    	<option value="steady" selected>Steady</option>
+    	<option value="offensive">Offensive</option>
+    	<option value="titfortat">Tit-for-tat</option>
+    	<option value="random">Random</option>
+    	<option value="buggy">Buggy</option>
+    </select>
+
     <input type="submit" class="button">
 
   </form>
