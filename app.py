@@ -54,6 +54,101 @@ def create_buggy():
         banging = request.form['banging']
         algo = request.form['algo']
 
+        total_cost = 0
+        cost = ""
+       
+        if fireproof == 'true':
+            total_cost += 70
+
+        if insulated == 'true':
+            total_cost += 100
+
+        if antibiotic == 'true':
+            total_cost += 90
+
+        if banging == 'true':
+            total_cost += 42
+
+        if power_type == 'petrol':
+            total_cost += (4*int(power_units))
+        elif power_type == 'fusion':
+            total_cost += (400*int(power_units))
+        elif power_type == 'steam':
+            total_cost += (3*int(power_units))
+        elif power_type == 'bio':
+            total_cost += (5*int(power_units))
+        elif power_type == 'electric':
+            total_cost += (20*int(power_units))
+        elif power_type == 'rocket':
+            total_cost += (16*int(power_units))
+        elif power_type == 'hamster':
+            total_cost += (3*int(power_units))
+        elif power_type == 'thermo':
+            total_cost += (300*int(power_units))
+        elif power_type == 'solar':
+            total_cost += (40*int(power_units))
+        elif power_type == 'wind':
+            total_cost += (20*int(power_units))
+
+        if aux_power_type == 'petrol':
+            total_cost += (4*int(power_units))
+        elif aux_power_type == 'fusion':
+            total_cost += (400*int(power_units))
+        elif aux_power_type == 'steam':
+            total_cost += (3*int(power_units))
+        elif aux_power_type == 'bio':
+            total_cost += (5*int(power_units))
+        elif aux_power_type == 'electric':
+            total_cost += (20*int(power_units))
+        elif aux_power_type == 'rocket':
+            total_cost += (16*int(power_units))
+        elif aux_power_type == 'hamster':
+            total_cost += (3*int(power_units))
+        elif aux_power_type == 'thermo':
+            total_cost += (300*int(power_units))
+        elif aux_power_type == 'solar':
+            total_cost += (40*int(power_units))
+        elif aux_power_type == 'wind':
+            total_cost += (20*int(power_units))
+
+        if tyres == 'knobbly':
+            total_cost += (15*int(qty_tyres))
+        elif tyres == 'slick':
+            total_cost += (10*int(qty_tyres))
+        elif tyres == 'steelband':
+            total_cost += (20*int(qty_tyres))
+        elif tyres == 'reactive':
+            total_cost += (40*int(qty_tyres))
+        elif tyres == 'maglev':
+            total_cost += (50*int(qty_tyres)) 
+
+        if armour == 'none':
+            total_cost += (0*int(qty_wheels))*(1+((int(qty_wheels)-4)/10))
+        elif armour == 'wood':
+            total_cost += (40*int(qty_wheels))*(1+((int(qty_wheels)-4)/10))
+        elif armour == 'aluminium':
+            total_cost += (200*int(qty_wheels))*(1+((int(qty_wheels)-4)/10))
+        elif armour == 'thinsteel':
+            total_cost += (100*int(qty_wheels))*(1+((int(qty_wheels)-4)/10))
+        elif armour == 'thicksteel':
+            total_cost += (200*int(qty_wheels))*(1+((int(qty_wheels)-4)/10))
+        elif armour == 'titanium':
+            total_cost += (290*int(qty_wheels))*(1+((int(qty_wheels)-4)/10))
+            
+        if attack == 'none':
+            total_cost += (0*int(qty_attacks))
+        elif attack == 'spike':
+            total_cost += (5*int(qty_attacks))
+        elif attack == 'flame':
+            total_cost += (20*int(qty_attacks))
+        elif attack == 'charge':
+            total_cost += (28*int(qty_attacks))
+        elif attack == 'biohazard':
+            total_cost += (30*int(qty_attacks))
+
+        cost = f"{total_cost}"
+        
+       
         try:
             with sql.connect(DATABASE_FILE) as con:
                 cur = con.cursor()
@@ -62,14 +157,14 @@ def create_buggy():
                     UPDATE buggies set qty_wheels=?, flag_color=?, flag_pattern=?, flag_color_secondary=?,
                     power_type=?, power_units=?, aux_power_type=?, aux_power_units=?, hamster_booster=?,
                     tyres=?, qty_tyres=?, armour=?, attack=?, qty_attacks=?, fireproof=?, insulated=?,
-                    antibiotic=?, banging=?, algo=? WHERE id=?
+                    antibiotic=?, banging=?, algo=?, total_cost=? WHERE id=?
 
                     """,
 
                     (qty_wheels, flag_color, flag_pattern, flag_color_secondary,
                     power_type, power_units, aux_power_type, aux_power_units, hamster_booster,
                     tyres, qty_tyres, armour, attack, qty_attacks, fireproof, insulated,
-                    antibiotic, banging, algo, DEFAULT_BUGGY_ID)
+                    antibiotic, banging, algo, total_cost, DEFAULT_BUGGY_ID)
                 )
                 con.commit()
                 msg = "Record successfully saved"
@@ -78,8 +173,9 @@ def create_buggy():
             con.rollback()
             msg = "error in update operation"
         finally:
+
             con.close()
-        return render_template("updated.html", msg = msg)
+        return render_template("updated.html", msg = msg, cost = cost)
 
 #------------------------------------------------------------
 # a page for displaying the buggy
@@ -91,6 +187,7 @@ def show_buggies():
     cur = con.cursor()
     cur.execute("SELECT * FROM buggies")
     record = cur.fetchone(); 
+
     return render_template("buggy.html", buggy = record)
 
 #------------------------------------------------------------
