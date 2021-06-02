@@ -35,24 +35,102 @@ def create_buggy():
     elif request.method == 'POST':
         msg=""
         qty_wheels = request.form['qty_wheels']
+        if not qty_wheels.isdigit():
+            msg = f"Error: 'Number of wheels:{qty_wheels}' is not a number"
+            return render_template("updated.html", msg = msg)
+
         flag_color = request.form['flag_color']
+        if flag_color[0] != '#':
+            msg = f"Error: 'Colour of flag:{flag_color}' is not a valid colour code"
+            return render_template("updated.html", msg = msg)
+
         flag_pattern = request.form['flag_pattern']
+        patterns = ['Plain', 'Vertical stripes', 'Horizontal stripes', 'Diagonal stripes', 'Checkered', 'Spots']
+        if flag_pattern.isdigit():
+            msg = f"Error: 'Pattern on flag:{flag_pattern}' is not a valid string"
+            return render_template("updated.html", msg = msg)
+
         flag_color_secondary = request.form['flag_color_secondary']
+        if flag_color_secondary[0] != '#':
+            msg = f"Error: 'Colour of flag:{flag_color_secondary}' is not a valid colour code"
+            return render_template("updated.html", msg = msg)
+
         power_type = request.form['power_type']
+        if power_type.isdigit():
+            msg = f"Error: 'Primary motive power:{power_type}' is not a valid string"
+            return render_template("updated.html", msg = msg)
+
         power_units = request.form['power_units']
+        if not power_units.isdigit():
+            msg = f"Error: 'Primary motive power units:{power_units}' is not a number"
+            return render_template("updated.html", msg = msg)
+
         aux_power_type = request.form['aux_power_type']
+        if aux_power_type.isdigit():
+            msg = f"Error: 'Auxiliary motive power:{aux_power_type}' is not a valid string"
+            return render_template("updated.html", msg = msg)
+
         aux_power_units = request.form['aux_power_units']
+        if not aux_power_units.isdigit():
+            msg = f"Error: 'Auxiliary motive power units:{aux_power_units}' is not a number"
+            return render_template("updated.html", msg = msg)
+
         hamster_booster = request.form['hamster_booster']
+        if not hamster_booster.isdigit():
+            msg = f"Error: 'Hamster booster:{hamster_booster}' is not a number"
+            return render_template("updated.html", msg = msg)
+
         tyres = request.form['tyres']
+        if tyres.isdigit():
+            msg = f"Error: 'Type of tyres:{tyres}' is not a valid string"
+            return render_template("updated.html", msg = msg)
+
         qty_tyres = request.form['qty_tyres']
+        if not qty_tyres.isdigit():
+            msg = f"Error: 'Number of tyres:{qty_tyres}' is not a number"
+            return render_template("updated.html", msg = msg)
+
         armour = request.form['armour']
+        if armour.isdigit():
+            msg = f"Error: 'Armour:{armour}' is not a valid string"
+            return render_template("updated.html", msg = msg)
+
         attack = request.form['attack']
+        if attack.isdigit():
+            msg = f"Error: 'Offensive capability:{attack}' is not a valid string"
+            return render_template("updated.html", msg = msg)
+
         qty_attacks = request.form['qty_attacks']
+        if not qty_attacks.isdigit():
+            msg = f"Error: 'Number of attacks:{qty_attacks}' is not a number"
+            return render_template("updated.html", msg = msg)
+
         fireproof = request.form['fireproof']
+        bool_vals = ['true', 'false']
+        if fireproof not in bool_vals:
+            msg = f"Error: 'Fireproof?:{fireproof}' is not valid input"
+            return render_template("updated.html", msg = msg)
+
         insulated = request.form['insulated']
+        if insulated not in bool_vals:
+            msg = f"Error: 'Insulated?:{insulated}' is not valid input"
+            return render_template("updated.html", msg = msg)
+
         antibiotic = request.form['antibiotic']
+        if antibiotic not in bool_vals:
+            msg = f"Error: 'Antibiotic?:{antibiotic}' is not valid input"
+            return render_template("updated.html", msg = msg)
+
         banging = request.form['banging']
+        if banging not in bool_vals:
+            msg = f"Error: 'Banging?:{banging}' is not valid input"
+            return render_template("updated.html", msg = msg)
+
         algo = request.form['algo']
+        if algo.isdigit():
+            msg = f"Error: 'Race computer algorithm:{algo}' is not a valid string"
+            return render_template("updated.html", msg = msg)
+
 
         total_cost = 0
         cost = ""
