@@ -123,17 +123,17 @@ def create_buggy():
             total_cost += (50*int(qty_tyres)) 
 
         if armour == 'none':
-            total_cost += (0*int(qty_wheels))*(1+((int(qty_wheels)-4)/10))
+            total_cost += 0*(1+((int(qty_wheels)-4)/10))
         elif armour == 'wood':
-            total_cost += (40*int(qty_wheels))*(1+((int(qty_wheels)-4)/10))
+            total_cost += 40*(1+((int(qty_wheels)-4)/10))
         elif armour == 'aluminium':
-            total_cost += (200*int(qty_wheels))*(1+((int(qty_wheels)-4)/10))
+            total_cost += 200*(1+((int(qty_wheels)-4)/10))
         elif armour == 'thinsteel':
-            total_cost += (100*int(qty_wheels))*(1+((int(qty_wheels)-4)/10))
+            total_cost += 100*(1+((int(qty_wheels)-4)/10))
         elif armour == 'thicksteel':
-            total_cost += (200*int(qty_wheels))*(1+((int(qty_wheels)-4)/10))
+            total_cost += 200*(1+((int(qty_wheels)-4)/10))
         elif armour == 'titanium':
-            total_cost += (290*int(qty_wheels))*(1+((int(qty_wheels)-4)/10))
+            total_cost += 290*(1+((int(qty_wheels)-4)/10))
             
         if attack == 'none':
             total_cost += (0*int(qty_attacks))
