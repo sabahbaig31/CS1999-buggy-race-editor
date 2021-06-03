@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+
+<h1>Buggy design rules</h1>
+
+<fieldset>
+	<legend>Flag design:</legend>
+	<ol>
+		<li>For every pattern except plain, the secondary colour must be different from the original colour.</li>
+	</ol>
+</fieldset>
+
+<fieldset>
+	<legend>Wheels and tyres:</legend>
+	<ol>
+		<li>The number of wheels on your buggy must be even.</li>
+		<li>The number of tyres must be equal to or greater than the number of wheels.</li>
+	</ol>
+</fieldset>
+
+<fieldset>
+	<legend>Power and backup power:</legend>
+	<ol>
+		<li>You can only have one unit of non-consumbale power (non-consumable powers: Fusion reactor, Thermonuclear reactor, Bank of solar panels, Sailing rig) per motive force.</li>
+	</ol>
+</fieldset>
+
+<fieldset>
+	<legend>Hamster booster:</legend>
+	<ol>
+		<li>Only effective if you have hamster motive power.</li>
+	</ol>
+</fieldset>
+
+<fieldset>
+	<legend>Armour:</legend>
+	<ol>
+		<li>Armour is not a requirement for entry in any race.</li>
+	</ol>
+</fieldset>
+
+<fieldset>
+	<legend>Attack:</legend>
+	<ol>
+		<li>Each attack can be deployed once and only once.</li>
+		<li>The likelihood of being able to execute the attack is influenced by your buggy's race computer algorithm.</li>
+
+	</ol>
+</fieldset>
+
+<fieldset>
+	<legend>Algorithm:</legend>
+	<ol>
+		<li>Must not be "buggy". Buggy is what happens when your race computer goes wrong: it is not a state you choose.</li>
+		
+	</ol>
+</fieldset>
+
+<p>
+    <a href="/" class="button">Home</a>
+</p>
+
+{% endblock %}

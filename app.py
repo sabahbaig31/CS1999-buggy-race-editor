@@ -131,6 +131,38 @@ def create_buggy():
             msg = f"Error: 'Race computer algorithm:{algo}' is not a valid string"
             return render_template("updated.html", msg = msg)
 
+        if flag_color == flag_color_secondary:
+            msg = "Error: The buggy you just created violates Flag design rule number 1. Please try again."
+            return render_template("updated.html", msg = msg)
+
+        if not int(qty_wheels) % 2 == 0:
+            msg = "Error: The buggy you just created violates Wheels and tyres rule number 1. Please try again."
+            return render_template("updated.html", msg = msg)
+
+        if qty_tyres < qty_wheels:
+            msg = "Error: The buggy you just created violates Wheels and tyres rule number 2. Please try again."
+            return render_template("updated.html", msg = msg)
+
+        non_cons_pow = ["fusion", "thermo", "solar", "wind"]
+
+        if power_type in non_cons_pow and int(power_units) > 1:
+            msg = "Error: The buggy you just created violates Power rule number 1. Please try again."
+            
+
+        elif aux_power_type in non_cons_pow and int(aux_power_units) > 1:
+            msg = msg + "Error: The buggy you just created violates Backup power rule number 1. Please try again."
+            return render_template("updated.html", msg = msg)
+
+        if not power_type == "hamster" and int(hamster_booster) > 0:
+            msg = "Error: The buggy you just created violates Hamster booster rule number 1. Please try again."
+            return render_template("updated.html", msg = msg)
+
+        if not aux_power_type == "hamster" and int(hamster_booster) > 0:
+            msg = "Error: The buggy you just created violates Hamster booster rule number 1. Please try again."
+            return render_template("updated.html", msg = msg)
+
+
+
 
         total_cost = 0
         cost = ""
@@ -254,6 +286,11 @@ def create_buggy():
 
             con.close()
         return render_template("updated.html", msg = msg, cost = cost)
+
+
+@app.route('/rules')
+def display_rules():
+    return render_template("rules.html")
 
 #------------------------------------------------------------
 # a page for displaying the buggy

@@ -30,6 +30,10 @@
    	 	<label for="flag_color_secondary">Secondary colour on flag:</label>
     	<input type="color" name="flag_color_secondary" value="{{ buggy['flag_color_secondary'] }}" />
 
+    	<br>
+
+    	<input type="button" onclick="alert('1.For every pattern except plain, the secondary colour must be different from the original colour.')" value="Rules for flag design">
+
   	</fieldset>
 
 
@@ -56,6 +60,11 @@
     	<label for="qty_tyres">Number of tyres:</label>
     	<input type="number" name="qty_tyres" value="{{ buggy['qty_tyres'] }}" min="4" />
 
+
+    	<input type="button" onclick="alert('1.The number of wheels on your buggy must be even. 2.The number of tyres must be equal to or greater than the number of wheels.')" value="Rules for wheels and tyres">
+
+    	
+
   	</fieldset>
 
  
@@ -77,10 +86,11 @@
     		<option value="wind" {% if buggy['power_type'] == "wind" %} selected {% endif %}>Sailing rig</option>
     	</select>
 
- 
 
     	<label for="power_units">Primary motive power units:</label>
     	<input type="number" name="power_units" min="1" value="{{ buggy['power_units'] }}" />
+
+    	<input type="button" onclick="alert('1.You can only have one unit of non-consumbale power (non-consumable powers: Fusion reactor, Thermonuclear reactor, Bank of solar panels, Sailing rig) per motive force.')" value="Rules for power">
 
   	</fieldset>
 
@@ -108,6 +118,8 @@
     	<label for="aux_power_units">Auxiliary motive power units:</label>
     	<input type="number" name="aux_power_units" min="0" value="{{ buggy['aux_power_units'] }}" />
 
+    	<input type="button" onclick="alert('1.You can only have one unit of non-consumbale power (non-consumable powers: Fusion reactor, Thermonuclear reactor, Bank of solar panels, Sailing rig) per motive force.')" value="Rules for backup power">
+
   	</fieldset>
 
 
@@ -117,6 +129,8 @@
 
     	<label for="hamster_booster">Hamster booster:</label>
     	<input type="number" name="hamster_booster" value="{{ buggy['hamster_booster'] }}" />
+
+    	<input type="button" onclick="alert('1.Only effective if you have hamster motive power.')" value="Rules for Hamster booster">
 
     </fieldset>
 
@@ -150,6 +164,10 @@
 
 		<label for="qty_attacks">Number of attacks:</label>
     	<input type="number" name="qty_attacks" value="{{ buggy['qty_attacks'] }}" min="0" />
+
+    	<input type="button" onclick="alert('1.Armour is not a requirement for entry in any race.')" value="Rules for Armour">
+
+		<input type="button" onclick="alert('1.Each attack can be deployed once and only once. 2.The likelihood of being able to execute the attack is influenced by the race computer algorithm your buggy has.')" value="Rules for Attacks">
 
     </fieldset>
 
@@ -205,6 +223,10 @@
     		 <option value="buggy" {% if buggy['algo'] == "buggy" %} selected {% endif %}>Buggy</option>
     	 </select>
 
+    	 <br>
+
+    	 <input type="button" onclick="alert('1.Must not be buggy. Buggy is what happens when your race computer goes wrong: it is not a state you choose.')" value="Rules for Algorithms">
+
     </fieldset>
 
   </div>
@@ -223,6 +245,7 @@
 
   <p>
     <a href="/" class="button">Home</a>
+
   </p>
 
 {% endblock %}
