@@ -18,7 +18,7 @@
   		<legend>Flag design:</legend>
 
   		<label for="flag_color">Colour of flag:</label>
-    	<input type="color" name="flag_color" value="{{ buggy['flag_color'] }}"/>
+    	<input type="color" name="flag_color" value="{{ buggy['flag_color'] }}" id="flag_color"/>
 
     	<br>
 
@@ -49,7 +49,7 @@
   		<legend>Wheels and Tyres:</legend>
 
   		<label for="qty_wheels">Number of wheels:</label>
-    	<input type="number" name="qty_wheels" min="4" value="{{ buggy['qty_wheels'] }}" step="2" />
+    	<input type="number" name="qty_wheels" id="qty_wheels" min="4" value="{{ buggy['qty_wheels'] }}" step="2" />
 
     	<br>
 
@@ -65,7 +65,7 @@
     	<br>
 
     	<label for="qty_tyres">Number of tyres:</label>
-    	<input type="number" name="qty_tyres" value="{{ buggy['qty_tyres'] }}" min="4" />
+    	<input type="number" name="qty_tyres" value="{{ buggy['qty_tyres'] }}" min="4" id="qty_tyres"/>
 
 
     	<input type="button" onclick="alert('1.The number of wheels on your buggy must be even. 2.The number of tyres must be equal to or greater than the number of wheels.')" value="Rules for wheels and tyres">
@@ -95,7 +95,7 @@
 
 
     	<label for="power_units">Primary motive power units:</label>
-    	<input type="number" name="power_units" min="1" value="{{ buggy['power_units'] }}" />
+    	<input type="number" name="power_units" id="power_units" min="1" value="{{ buggy['power_units'] }}" />
 
     	<input type="button" onclick="alert('1.You can only have one unit of non-consumbale power (non-consumable powers: Fusion reactor, Thermonuclear reactor, Bank of solar panels, Sailing rig) per motive force.')" value="Rules for power">
 
@@ -123,7 +123,7 @@
     	<br>
     
     	<label for="aux_power_units">Auxiliary motive power units:</label>
-    	<input type="number" name="aux_power_units" min="0" value="{{ buggy['aux_power_units'] }}" />
+    	<input type="number" name="aux_power_units" id="aux_power_units" min="0" value="{{ buggy['aux_power_units'] }}" />
 
     	<input type="button" onclick="alert('1.You can only have one unit of non-consumbale power (non-consumable powers: Fusion reactor, Thermonuclear reactor, Bank of solar panels, Sailing rig) per motive force.')" value="Rules for backup power">
 
@@ -135,7 +135,7 @@
     	<legend>Hamster booster:</legend>
 
     	<label for="hamster_booster">Hamster booster:</label>
-    	<input type="number" name="hamster_booster" value="{{ buggy['hamster_booster'] }}" min="0 "/>
+    	<input type="number" name="hamster_booster" id="hamster_booster" value="{{ buggy['hamster_booster'] }}" min="0 "/>
 
     	<input type="button" onclick="alert('1.Only effective if you have hamster motive power.')" value="Rules for Hamster booster">
 
@@ -170,7 +170,7 @@
 		<br>
 
 		<label for="qty_attacks">Number of attacks:</label>
-    	<input type="number" name="qty_attacks" value="{{ buggy['qty_attacks'] }}" min="0" />
+    	<input type="number" name="qty_attacks" id="qty_attacks" value="{{ buggy['qty_attacks'] }}" min="0" />
 
     	<input type="button" onclick="alert('1.Armour is not a requirement for entry in any race.')" value="Rules for Armour">
 
@@ -222,8 +222,8 @@
 
     	 <label for="algo">Race computer algorithm:</label>
     	 <select id="algo" name="algo">
-    		 <option value="defensive" {% if buggy['algo'] == "defensive" %} selected {% endif %}>Defensive</option>
-    		 <option value="steady" {% if buggy['algo'] == "steady" %} selected {% endif %}>Steady</option>
+    	 	<option value="steady" {% if buggy['algo'] == "steady" %} selected {% endif %}>Steady</option>
+    		 <option value="defensive" {% if buggy['algo'] == "defensive" %} selected {% endif %}>Defensive</option> 
     		 <option value="offensive" {% if buggy['algo'] == "offensive" %} selected {% endif %}>Offensive</option>
     		 <option value="titfortat" {% if buggy['algo'] == "titfortat" %} selected {% endif %}>Tit-for-tat</option>
     		 <option value="random" {% if buggy['algo'] == "random" %} selected {% endif %}>Random</option>
@@ -245,14 +245,76 @@
     </fieldset>
 
 <div class="spacer">
+
+	<a href="#" class="button" onClick="autoFill()" >Autofill empty fields</a>
+
     <input type="submit" class="button">
+
+     <a href="/" class="button">Home</a>
+
 </div>
 
   </form>
 
-  <p>
-    <a href="/" class="button">Home</a>
+  <script>
+  	function autoFill() {
 
-  </p>
+  		var fireElements = document.getElementsByName("fireproof");
+
+  		for (var i=0; i<fireElements.length; i++) {
+  			if (fireElements[i].getAttribute('value') == 'false') {
+  				fireElements[i].checked = 'true';
+  			}
+  		}
+
+  		var insulElements = document.getElementsByName("insulated");
+
+  		for (var i=0; i<insulElements.length; i++) {
+  			if (insulElements[i].getAttribute('value') == 'false') {
+  				insulElements[i].checked = 'true';
+  			}
+  		}
+
+  		var antiElements = document.getElementsByName("antibiotic");
+
+  		for (var i=0; i<antiElements.length; i++) {
+  			if (antiElements[i].getAttribute('value') == 'false') {
+  				antiElements[i].checked = 'true';
+  			}
+  		}
+
+  		var bangElements = document.getElementsByName("banging");
+
+  		for (var i=0; i<bangElements.length; i++) {
+  			if (bangElements[i].getAttribute('value') == 'false') {
+  				bangElements[i].checked = 'true';
+  			}
+  		}
+
+  		if (document.getElementById('qty_wheels').value == "") {
+  		document.getElementById("qty_wheels").value = "4";
+
+  		} if (document.getElementById('qty_tyres').value == "") {
+  			document.getElementById("qty_tyres").value = document.getElementById("qty_wheels").value;
+
+  		} if (document.getElementById('power_units').value == "") {
+  			document.getElementById("power_units").value = "1";
+
+  		} if (document.getElementById('aux_power_units').value == "") {
+  			document.getElementById("aux_power_units").value = "0";
+
+  		} if (document.getElementById('hamster_booster').value == "") {
+  			document.getElementById("hamster_booster").value = "0";
+
+  		} if (document.getElementById('qty_attacks').value == "") {
+  			document.getElementById("qty_attacks").value = "0";
+
+  		} else
+  		return false;
+  	}
+
+  </script>
+
+
 
 {% endblock %}
