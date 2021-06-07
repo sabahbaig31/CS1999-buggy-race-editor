@@ -2,10 +2,17 @@
 
 {% block content %}
 
-  <h1>Make buggy</h1>
+{% if buggy %}
+	<h1>Editing buggy #{{ buggy['id'] }}</h1>
+{% else %}
+    <h1>Making a buggy</h1>
+{% endif %}
 
   <div class="container">
   <form action="/new" method="post" class="options">
+
+  	<label for="id">Buggy ID:</label>
+    <input type="text" name="id" value="{{ buggy['id'] }}" readonly/>
 
   	<fieldset>
   		<legend>Flag design:</legend>
@@ -128,7 +135,7 @@
     	<legend>Hamster booster:</legend>
 
     	<label for="hamster_booster">Hamster booster:</label>
-    	<input type="number" name="hamster_booster" value="{{ buggy['hamster_booster'] }}" />
+    	<input type="number" name="hamster_booster" value="{{ buggy['hamster_booster'] }}" min="0 "/>
 
     	<input type="button" onclick="alert('1.Only effective if you have hamster motive power.')" value="Rules for Hamster booster">
 

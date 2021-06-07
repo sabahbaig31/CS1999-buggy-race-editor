@@ -2,7 +2,9 @@
 
 {% block content %}
 
-  <h1>Buggy</h1>
+  <h1>Buggies</h1>
+
+  {% for buggy in buggies %}
 
   <table>
     <tr>
@@ -65,8 +67,13 @@
     <tr>
       <td>Race computer algorithm:</td> <td> {{ buggy['algo'] }} </td>
     </tr>
+    <tr>
+      <td colspan="2"><a href="/edit/{{ buggy['id'] }}">Edit me</a></td>
+    </tr>
 
   </table>
+
+  {% endfor %}
 
   <p>
     <a href="/" class="button">Home</a>
