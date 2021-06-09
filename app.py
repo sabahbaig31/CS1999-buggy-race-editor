@@ -5,7 +5,7 @@ import sqlite3 as sql
 app = Flask(__name__)
 
 # Constants - Stuff that we need to know that won't ever change!
-DATABASE_FILE = "database.db"
+DATABASE_FILE = "database.db" 
 DEFAULT_BUGGY_ID = "1"
 BUGGY_RACE_SERVER_URL = "http://rhul.buggyrace.net"
 
@@ -163,8 +163,6 @@ def create_buggy():
             return render_template("updated.html", msg = msg)
 
 
-
-
         total_cost = 0
         cost = ""
        
@@ -202,25 +200,25 @@ def create_buggy():
             total_cost += (20*int(power_units))
 
         if aux_power_type == 'petrol':
-            total_cost += (4*int(power_units))
+            total_cost += (4*int(aux_power_units))
         elif aux_power_type == 'fusion':
-            total_cost += (400*int(power_units))
+            total_cost += (400*int(aux_power_units))
         elif aux_power_type == 'steam':
-            total_cost += (3*int(power_units))
+            total_cost += (3*int(aux_power_units))
         elif aux_power_type == 'bio':
-            total_cost += (5*int(power_units))
+            total_cost += (5*int(aux_power_units))
         elif aux_power_type == 'electric':
-            total_cost += (20*int(power_units))
+            total_cost += (20*int(aux_power_units))
         elif aux_power_type == 'rocket':
-            total_cost += (16*int(power_units))
+            total_cost += (16*int(aux_power_units))
         elif aux_power_type == 'hamster':
-            total_cost += (3*int(power_units))
+            total_cost += (3*int(aux_power_units))
         elif aux_power_type == 'thermo':
-            total_cost += (300*int(power_units))
+            total_cost += (300*int(aux_power_units))
         elif aux_power_type == 'solar':
-            total_cost += (40*int(power_units))
+            total_cost += (40*int(aux_power_units))
         elif aux_power_type == 'wind':
-            total_cost += (20*int(power_units))
+            total_cost += (20*int(aux_power_units))
 
         if tyres == 'knobbly':
             total_cost += (15*int(qty_tyres))
@@ -339,6 +337,24 @@ def edit_buggy(buggy_id):
 
     return render_template("buggy-form.html", buggy=record)
     #return f"fixme edit buggy #{buggy_id}"
+
+@app.route('/delete/<buggy_id>')
+def delete_buggy(buggy_id):
+
+    con = sql.connect(DATABASE_FILE)
+    cur = con.cursor()
+    cur.execute("DELETE FROM buggies WHERE id=?", (buggy_id))
+    con.commit() 
+    status = "Buggy deleted"
+    msg = "Successfully deleted buggy number: " + str(buggy_id)
+
+    return render_template("status.html", msg = msg, status = status)
+
+@app.route('/poster')
+def show_poster():
+    return render_template("poster.html")
+
+
 
 #------------------------------------------------------------
 # You probably don't need to edit this... unless you want to ;)

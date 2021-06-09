@@ -27,6 +27,12 @@ h1 {
   color: #2F4F4F;
   text-align: center;
 }
+
+h2 {
+  margin: 1em 0 1em 0;
+  color: #2F4F4F;
+  text-align: center;
+}
 p {
   margin: 2em;
   text-align: center;

@@ -1,0 +1,204 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<style>
+  .cs1999-tasks {
+    border-top: 1px solid black;
+    margin-top: 4em;
+  }
+  .cs1999-tasks .task {
+    margin: 1em;
+    padding: 1em;
+    border: 1px solid black;
+  }
+  .cs1999-tasks .task h2 {
+    border-bottom: 3px solid gray;
+  }
+  .grid {
+  	display: inline-grid;
+  	grid-template-columns: repeat(2, 1fr);
+  }
+  .image1 {
+  	width: 10%;
+  	margin-right: 15px;
+  }
+
+  .image2 {
+  	width: 15%;
+  	margin-left: 15px;
+  	
+  }
+
+  .header {
+  	margin: 0px;
+  	display: inline-block;
+  }
+
+  .about {
+  	margin-top: 0px;
+
+  }
+</style>
+
+
+
+<img src="static/race_buggy.gif" class="image1">
+<h1 class="header">Welcome to SABAH'S BUGGY EDITOR</h1>
+<img src="static/buggy1.gif" class="image2">
+
+
+
+
+<section>
+	<h2 class="about">About</h2>
+	<p>
+		This buggy editor allows you to create multiple race buggies which can then be entered into any buggy race. The rules and regulations on what makes a valid buggy are available from the homepage, and they are also available on the 'Make buggy' page in case you forget what the rules are while you are making a buggy. There is no need to panic if you accidentally submit a buggy that violates any of the rules as this buggy will not be saved and the webpage will let you know which rule your buggy violated. If the number of features you are required to fill out for a valid race buggy is too much for you to handle, there is an autofill button at the bottom of the make buggy page which will fill any empty fields with default values. After making a buggy if you realise there is something you would like to change, you can simply go to the 'Show buggy' page from the homepage and then click the 'Edit me' link under whichever buggy you would like to edit. 
+	</p>
+</section>
+
+
+
+<section class="cs1999-tasks">
+
+  <div class="grid">
+  <div class="task">
+    <h2>0-GET Get the source code</h2>
+    <p>
+      I forked the repo on GitHub and then used <code>git clone</code> to make a local copy.
+    </p>
+    <p>
+      Once the repo was on my own machine I was able to commit changes to version control
+      as I went along, and I pushed back up to my GitHub repo at the end of each day.
+      I followed GitHub's instructions and set up a SSH key so I didn't need to enter
+      username and password every time I pushed.
+    </p>
+  </div>
+
+    <div class="task">
+    <h2>0-RUN Get app running and view it in a browser</h2>
+    <p>
+      I ran the webpage by opening terminal and then using <code>python3 app.py</code>.
+    </p>
+    <p>
+      Before running the webpage using terminal, I set up a virtual environment on my machine. I then proceeded to run the webpage using <code>python3 app.py</code>. Once the terminal notified me that the webpage was running, I opened chrome and typed <code>localhost:5000</code> to view the webpage.
+    </p>
+  </div>
+
+
+  <div class="task">
+    <h2>0-CHANGE Make a change to a template and see it appear</h2>
+    <p>
+      I changed the title on the homepage to <strong>'SABAH'S BUGGY EDITOR'</strong>.
+    </p>
+    <p>
+      I opened <code>templates/index.html</code> in my text editor and changed the heading from 'My buggy editor' to 'SABAH'S BUGGY EDITOR'. I then reloaded the buggy editor page in chrome to make sure the change worked.
+    </p>
+  </div>
+
+    <div class="task">
+    <h2>1-ADD Add more data to the form</h2>
+    <p>
+      I added all the remaining features from the table on the buggy race server.
+    </p>
+    <p>
+      After adding one extra feature, I made sure to add it to <code>init_db.py</code> as well before moving onto the next feature. I also made sure to delete the database and run it again in terminal to make sure the changes were saved in the database. I also made sure to use appropriate input tags for each feature.
+    </p>
+  </div>
+
+  <div class="task">
+    <h2>1-VALID Add basic data validation</h2>
+    <p>
+      I added data validation for all the input fields in <code>app.py</code>.
+    </p>
+    <p>
+      To do this, I added <code>if statements</code> in the <code>app.py</code> section that would give an error message if the user tried to submit a buggy with the wrong data types in any given field.
+    </p>
+  </div>
+
+  <div class="task">
+  <h2>1-STYLE Style your editor just how you like it</h2>
+  <p>
+    I changed features in the <code>app.css</code> to style it how I liked.
+  </p>
+  <p>
+    I added styles to some elements that did not have styling on them before. 
+  </p>
+</div>
+
+<div class="task">
+  <h2>2-EDIT Edit the record by loading its current values into the form</h2>
+  <p>
+    I did this by adding the <code>value</code> attribute to the input tags in <code>buggy-form.html</code>.
+  </p>
+  <p>
+    Not all my features had input tags so for some of them I had to use different methods. For example, for the <code>flag_pattern</code> feature on the buggy, I had used a drop down menu with all the options, so to load the current values I used the <code>selected</code> attribute and an <code>if statement</code> to check which option had been selected previously. 
+  </p>
+</div>
+
+<div class="task">
+  <h2>2-FORM Make the form better</h2>
+  <p>
+    I did this by grouping the relevant features on the form together.
+  </p>
+  <p>
+    Here I used the <code>fieldset</code> tag to group together fields that were about the same feature of a buggy. For example, I put all the options for flag design into one <code>fieldset</code>.
+  </p>
+</div>
+
+<div class="task">
+  <h2>2-COST Calculate and save the game cost of the buggy</h2>
+  <p>
+    I did this in <code>app.py</code> by checking the user input and then calculating the cost.
+  </p>
+  <p>
+    I wrote the code that does the calculations in <code>app.py</code> and then showed the cost on the <code>updated.html</code> page once the user submits the buggy. To do this I had to also add an extra column in the database so that it could store the total cost of the buggy.
+  </p>
+</div>
+
+<div class="task">
+  <h2>2-RULES Add validation according to the game rules</h2>
+  <p>
+    I did this by creating a new page that displays the rules.
+  </p>
+  <p>
+    As well as having a separate page displaying the rules, I also added the rules in the 'Make buggy' page. The rules can be viewed as a pop-up when the user clicks a button to display the rules. 
+  </p>
+</div>
+
+<div class="task">
+  <h2>3-AUTOFILL Add auto-fill to the edit forms</h2>
+  <p>
+    I did this by adding a button at the bottom of the 'Make buggy' page that autofills some fields.
+  </p>
+  <p>
+    When making a buggy, if you submit when there are still empty fields, this causes an error. To prevent this, I added a button on the bottom of the 'Make buggy' page which fills any empty fields with default values when clicked.
+  </p>
+</div>
+
+<div class="task">
+  <h2>3-MULTI Allow different buggies to be created</h2>
+  <p>
+    I did this by using the <code>SQL INSERT INTO</code> statement.
+  </p>
+  <p>
+    Before this task, when the 'Make buggy' button was clicked from the homepage, it always loaded in the values from the previous buggy. To fix this, I wrote in my code that if there is already a <code>buggy_id</code> (this would be the case when the user clicks the 'edit me' link under a buggy on the 'Show buggy' page) then the <code>SQL UPDATE</code> statment would run, but if there is no <code>buggy_id</code> (this would be the case when the user clicks 'Make buggy') then the <code>SQL INSERT INTO</code> statment will run which enters a new entry into the database instead of updating an existing one. 
+  </p>
+</div>
+
+<div class="task">
+  <h2>3-DEL Allow buggies to be deleted</h2>
+  <p>
+    To do this, I added a delete app route in <code>app.py</code> and a delete javascript function in the <code>buggy.html</code> page.
+  </p>
+  <p>
+    On the show buggies page, I added a 'Delete me' button under the 'Edit me' link. When the user clicks the button they are redirected to the <code>status.html</code> page which lets them know that their buggy has been deleted. It also shows the ID of the buggy that was deleted. Since the 'Edit me' link and the 'Delete me' button are right next to each other, I added a confirmation pop-up when the 'Delete me' button is clicked which asks the user if they are sure they want to delete the chosen buggy.
+  </p>
+</div>
+
+
+</div>
+
+</section>
+
+{% endblock %}
